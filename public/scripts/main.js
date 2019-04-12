@@ -82,12 +82,33 @@ document.addEventListener('DOMContentLoaded', function () {
         const releaseDateInput = document.getElementById('releaseDate');
         const releaseValue = releaseDateInput.value;
 
+
+
+        const firstNameInput = document.getElementById('firstName');
+        const firstNameValue = firstNameInput.value;
+
+        const surnameInput = document.getElementById('surname');
+        const surnameValue = surnameInput.value;
+
+        const ageInput = document.getElementById('age');
+        const ageValue = ageInput.value;
+
+        const instrumentInput = document.getElementById('instrument');
+        const instrumentValue = instrumentInput.value;
+
+
+
+
         console.log('artist', artistValue);
         console.log('formed', formedValue);
         console.log('genre', genreValue);
         console.log('image', imgURLValue);
         console.log('album', albumValue);
         console.log('album', releaseValue);
+        console.log('first', firstNameValue);
+        console.log('surname', surnameValue);
+        console.log('age', ageValue);
+        console.log('inst', instrumentValue);
 
 
         const data = {
@@ -100,6 +121,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 title: albumValue,
                 imgURL: imgURLValue,
                 releaseDate: formedValue,
+
+            }],
+            bandMembers: [{
+                firstName: firstNameValue,
+                surname: surnameValue,
+                age: ageValue,
+                instrument: instrumentValue
 
             }]
 
