@@ -1,0 +1,24 @@
+{
+  "name": "music",
+  "version": "1.0.0",
+  "description": "music catalogue",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon server.js"
+  },
+  "engines": {
+    "node": "10.3.0"
+  },
+  "author": "stephen_willmot",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.21"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}

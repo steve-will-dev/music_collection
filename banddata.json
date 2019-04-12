@@ -1,0 +1,123 @@
+[{
+        "_id": "5ca4131c6b40af65e4c7505b",
+        "artist": "Metallica",
+        "albums": [{
+                "_id": "5ca4131c6b40af65e4c75060",
+                "title": "The Black Album",
+                "releaseDate": "1991-08-11T23:00:00.000Z",
+                "imgURL": "https://upload.wikimedia.org/wikipedia/en/2/2c/Metallica_-_Metallica_cover.jpg"
+            },
+            {
+                "_id": "5ca4131c6b40af65e4c7505f",
+                "title": "Kill 'Em All",
+                "releaseDate": "1983-07-24T23:00:00.000Z",
+                "imgURL": "https://upload.wikimedia.org/wikipedia/en/5/5c/Metallica_-_Kill_%27Em_All_cover.jpg"
+            },
+            {
+                "_id": "5ca4131c6b40af65e4c7505e",
+                "title": "Ride the Lightning",
+                "releaseDate": "1984-07-26T23:00:00.000Z",
+                "imgURL": "https://upload.wikimedia.org/wikipedia/en/f/f4/Ridetl.png"
+            },
+            {
+                "_id": "5ca4131c6b40af65e4c7505d",
+                "title": "Master of Puppets",
+                "releaseDate": "1986-03-03T00:00:00.000Z",
+                "imgURL": "https://upload.wikimedia.org/wikipedia/en/b/b2/Metallica_-_Master_of_Puppets_cover.jpg"
+            },
+            {
+                "_id": "5ca4131c6b40af65e4c7505c",
+                "title": "...And Justice for All",
+                "releaseDate": "1988-08-24T23:00:00.000Z",
+                "imgURL": "https://upload.wikimedia.org/wikipedia/en/b/bd/Metallica_-_...And_Justice_for_All_cover.jpg"
+            }
+        ],
+        "formed": "1981-10-28T00:00:00.000Z",
+        "genre": "Metal",
+        "bandMembers": [{
+                "_id": "5ca4131c6b40af65e4c75064",
+                "firstName": "James",
+                "surname": "Hetfield",
+                "age": 55
+            },
+            {
+                "_id": "5ca4131c6b40af65e4c75063",
+                "firstName": "Kirk",
+                "surname": "Hammett",
+                "age": 56
+            },
+            {
+                "_id": "5ca4131c6b40af65e4c75062",
+                "firstName": "Robert",
+                "surname": "Trujillo",
+                "age": 54
+            },
+            {
+                "_id": "5ca4131c6b40af65e4c75061",
+                "firstName": "Lars",
+                "surname": "Ulrich",
+                "age": 55,
+                "instrument": "Drums"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": "5ca41aa1c689f96dbcc5f28c",
+        "artist": "Megadeth",
+        "albums": [{
+                "_id": "5ca41aa1c689f96dbcc5f290",
+                "title": "Killing Is My Business... and Business Is Good!",
+                "releaseDate": "1985-06-11T23:00:00.000Z",
+                "imgURL": "https://upload.wikimedia.org/wikipedia/en/5/54/Combat_KIMB.jpg"
+            },
+            {
+                "_id": "5ca41aa1c689f96dbcc5f28f",
+                "title": "Peace Sells... but Who's Buying?",
+                "releaseDate": "1986-09-18T23:00:00.000Z",
+                "imgURL": "https://upload.wikimedia.org/wikipedia/en/4/40/Megadeth_-_Peace_Sells..._But_Who%27s_Buying-.jpg"
+            },
+            {
+                "_id": "5ca41aa1c689f96dbcc5f28e",
+                "title": "So Far, So Good... So What!",
+                "releaseDate": "1988-01-19T00:00:00.000Z",
+                "imgURL": "https://upload.wikimedia.org/wikipedia/en/7/7f/Megadeth-SoFar.jpg"
+            },
+            {
+                "_id": "5ca41aa1c689f96dbcc5f28d",
+                "title": "Rust in Peace",
+                "releaseDate": "1990-09-23T23:00:00.000Z",
+                "imgURL": "https://upload.wikimedia.org/wikipedia/en/d/dc/Megadeth-RustInPeace.jpg"
+            }
+        ],
+        "formed": "1983-04-10T23:00:00.000Z",
+        "genre": "Metal",
+        "bandMembers": [{
+                "_id": "5ca41aa1c689f96dbcc5f294",
+                "firstName": "Dave",
+                "surname": "Mustaine",
+                "age": 57
+            },
+            {
+                "_id": "5ca41aa1c689f96dbcc5f293",
+                "firstName": "David",
+                "surname": "Ellefson",
+                "age": 54
+            },
+            {
+                "_id": "5ca41aa1c689f96dbcc5f292",
+                "firstName": "Kiko",
+                "surname": "Loureiro",
+                "age": 46
+            },
+            {
+                "_id": "5ca41aa1c689f96dbcc5f291",
+                "firstName": "Dirk",
+                "surname": "Verbeuren",
+                "age": 44,
+                "instrument": "Drums"
+            }
+        ],
+        "__v": 0
+    }
+]
