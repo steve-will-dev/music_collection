@@ -34,20 +34,36 @@
         <div class="row" id="navtabs">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s3"><a class="active" href="#test1">List</a></li>
-                    <li class="tab col s3"><a href="#test2">Add a Band</a></li>
-                    <li class="tab col s3"><a href="#test3">Update a Band</a></li>
-                    <li class="tab col s3"><a href="#test4">Delete a Band</a></li>
+                    <li class="tab col s3"><a class="active" href="#bands">List</a></li>
+                    <li class="tab col s3"><a href="#addbands">Add a Band</a></li>
+                    <li class="tab col s3"><a href="#updatebands">Update a Band</a></li>
+                    <li class="tab col s3"><a href="#deletebands">Delete a Band</a></li>
                 </ul>
             </div>
         </div>
         <div class="row">
-            <div id="test1" class="col s12">
+            <div id="bands" class="col s12">
+                <!-- <form class="col s12" id="getForm">
+
+                    <div class="input-field col s12">
+                        <input id="artist" type="text" class="validate">
+                        <label for="artist">Artist</label>
+                    </div>
+
+                    <div class="col s12">
+
+                        <button class="btn waves-effect waves-light" type="submit" value="submit" name="action">
+                            Search Band
+                            <i class="material-icons right">></i>
+                        </button>
+                    </div>
+
+                </form> -->
                 <div id="mountNode"></div>
             </div>
         </div>
 
-        <div class="row" id="test2">
+        <div class="row" id="addbands">
             <form class="col s12" id="addForm">
                 <div class="row">
                     <div>Band Details</div>
@@ -106,24 +122,76 @@
                         </div>
                     </div>
 
-
-                    <div id="test2" class="col s12">
-
-                        <button class="btn waves-effect waves-light" type="submit" value="submit" name="action">
-                            Add Band
-                            <i class="material-icons right">></i>
-                        </button>
-                    </div>
+                    <button class="btn waves-effect waves-light" type="submit" value="submit" name="action">
+                        Add Band
+                        <i class="material-icons right">></i>
+                    </button>
+                </div>
             </form>
         </div>
 
         <div class="row">
-            <div id="test3" class="col s12">Update Bands</div>
+            <div id="updatebands" class="col s12">Update Bands
+
+                <div id="bands" class="col s12">
+                    <form class="col s12" id="getForm">
+
+                        <div class="input-field col s12">
+                            <input id="artistsearch" type="text" class="validate">
+                            <label for="artist">Artist</label>
+                        </div>
+
+                        <div class="col s12">
+
+                            <button class="btn waves-effect waves-light" type="submit" value="submit" name="action">
+                                Search Band
+                                <i class="material-icons right">></i>
+                            </button>
+                        </div>
+
+                    </form>
+                    <div id="mountNode2"></div>
+                </div>
+
+
+
+            </div>
+
         </div>
 
         <div class="row">
-            <div id="test4" class="col s12">Delete Bands</div>
+            <div id="deletebands" class="col s12">Delete Bands
+
+                <div id="bands" class="col s12">
+                    <form class="col s12" id="deleteForm">
+
+                        <div class="input-field col s12">
+                            <input id="artistdelete" type="text" class="validate">
+                            <label for="artist">Artist</label>
+                        </div>
+
+                        <div class="col s12">
+
+                            <button class="btn waves-effect waves-light" type="submit" value="submit" name="action">
+                                Delete Band
+                                <i class="material-icons right">></i>
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+
+            </div>
+
         </div>
+
+
+
+
+
     </div>
 
 

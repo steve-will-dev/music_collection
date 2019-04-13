@@ -126,7 +126,7 @@ app.get('/music/:id?', (req, res, next) => {
 });
 
 // get a bands albums by artist name fix string to capital at 0 and remaining lowercase
-app.get('/albums/:artist', (req, res, next) => {
+app.get('/album/:artist', (req, res, next) => {
     const artistInput = req.params.artist;
     var findAlbums = artistInput.charAt(0).toUpperCase() + artistInput.slice(1).toLowerCase();
     console.log(findAlbums);

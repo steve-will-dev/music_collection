@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var instance = M.Tabs.init(tabs, {});
 
 
-    fetch('/music', {
+    fetch('/music/', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -25,37 +25,78 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
 
-            // for (i = 0; i < music.length; i++) {
-            //     var albums = music[i].albums;
-            //     //console.log(music[i].albums);
-            //     //console.log(music.length);
-            //     var artist = music[i].artist;
-            //     // console.log(artist);
-            //     var el = document.getElementById('output');
-            //     elChild = document.createElement('div');
-            //     elChild.innerHTML = "<h2>" + artist + "</h2><p>Genre: " + music[i].genre + "</p> <p>Formed: " + music[i].formed + "</p>";
-            //     el.appendChild(elChild);
-
-            //     for (j = 0; j < albums.length; j++) {
-            //         // console.log(albums[j].title);
-            //         // console.log(albums[j].imgURL);
-            //         var albumsTitle = albums[j].title;
-            //         var imgURL = albums[j].imgURL;
-            //         var el = document.getElementById('output');
-            //         elChild = document.createElement('ul');
-            //         elChild.innerHTML = "<li class=\"list-group-item\">" + albumsTitle + "<br /><img src=" + imgURL + ">" + "</li>";
-            //         el.appendChild(elChild);
-            //     }
-            // }
             const mountNode = document.getElementById('mountNode');
             mountNode.innerHTML = HTML;
         });
 
 
-    // cosnt form = document.getElementById('addForm');
-    // form.addEventListener('submit', function (e) {
-    //     e.preventDefault();
-    // })
+    const getform = document.getElementById('getForm');
+    getform.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+
+        const artistSearch = document.getElementById('artistsearch');
+        const artist = artistSearch.value;
+
+        console.log('artist', artist);
+
+
+        fetch('/music/' + artist, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    // "Content-Type": "application/x-www-form-urlencoded",
+                }
+            })
+            .then(resp => resp.json())
+
+            .then(music => {
+
+                console.log('the output', music);
+                const HTML = templateFn({
+                    music
+                });
+
+
+                const mountNode2 = document.getElementById('mountNode2');
+                mountNode2.innerHTML = HTML;
+            });
+    });
+
+
+    const deleteform = document.getElementById('deleteForm');
+    deleteform.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+
+        const artistDelete = document.getElementById('artistdelete');
+        const deleteArtist = artistDelete.value;
+
+        console.log('artist deleted', deleteArtist);
+
+
+        fetch('/music/' + deleteArtist, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                    // "Content-Type": "application/x-www-form-urlencoded",
+                }
+            })
+            .then(resp => resp.json())
+            .then(music => {
+                M.toast({
+                    html: 'Bands Saved!',
+                    classes: 'success'
+                });
+            })
+            .catch(err => {
+                console.log(error);
+                M.toast({
+                    html: `Error: ${err.message}`,
+                    classes: 'error'
+                });
+            });
+    });
 
 
 
