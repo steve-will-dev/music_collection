@@ -1,25 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const template = document.getElementById('my_template').innerHTML;
-    const templateFn = Handlebars.compile(template);
+    const template = document.getElementById('my_template').innerHTML; // handlebars template at the bottom of index.html
+    const templateFn = Handlebars.compile(template); // compile the template
 
     var tabs = document.querySelectorAll('.tabs')[0];
 
-    const updateTabTrigger = document.getElementById('updatebands');
+    const updateTabTrigger = document.getElementById('updatebandstab');
 
     var instance = M.Tabs.init(tabs, {});
 
-    var _music = [];
+    var _music = []; // loaded when update artists is clicked. To be used to populate the form fields. Not working yet.
 
 
+    // intital function to load all the data into the list get method. loaded into handlebars template
     function getMusic() {
-
 
         fetch('/music/', {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json",
-                    // "Content-Type": "application/x-www-form-urlencoded",
                 }
             })
             .then(resp => resp.json())
@@ -39,9 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-
-
-
+    // click for update and delete buttons    
     mountNode.addEventListener("click", function (e) {
         // console.log('click', e.target);
         if (e.target) {
@@ -49,26 +46,22 @@ document.addEventListener('DOMContentLoaded', function () {
             //   console.log("id", id);
             if (e.target.matches("button.update")) {
                 // update
-                console.log("update");
+                //   console.log("update");
                 updateBand(id);
 
             } else if (e.target.matches("button.delete")) {
                 // delete
-                console.log("delete");
+                //   console.log("delete");
                 deleteBand(id);
             }
         }
     });
 
 
-
+    // update bands functions. This needs lots of improvement. look at the serialize to array
     function updateBand(id) {
-        instance.select('updatebands');
-        //  var id = id;
-        //   console.log("id", id);
 
 
-        // update FORM
         const updateForm = document.getElementById('updateForm');
         updateForm.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -104,16 +97,16 @@ document.addEventListener('DOMContentLoaded', function () {
             const updatedInstrument = instrumentUpdate.value;
 
 
-            console.log('artist', updatedArtist);
-            console.log('formed', updatedFormed);
-            console.log('genre', updatedGenre);
-            console.log('image', updatedImgURL);
-            console.log('album', updatedAlbum);
-            console.log('album', updatedRelease);
-            console.log('first', updatedFirstName);
-            console.log('surname', updatedSurname);
-            console.log('age', updateAge);
-            console.log('inst', updatedInstrument);
+            // console.log('artist', updatedArtist);
+            // console.log('formed', updatedFormed);
+            // console.log('genre', updatedGenre);
+            // console.log('image', updatedImgURL);
+            // console.log('album', updatedAlbum);
+            // console.log('album', updatedRelease);
+            // console.log('first', updatedFirstName);
+            // console.log('surname', updatedSurname);
+            // console.log('age', updateAge);
+            // console.log('inst', updatedInstrument);
 
 
             const updateData = {
@@ -138,17 +131,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
             };
 
-            console.log('update data', updateData, id);
+            //console.log('update data', updateData, id);
+
+            // the PUT method of the updated data from above ^^^^^^
 
             fetch(`/music/${id}`, {
                     method: 'PUT',
                     body: JSON.stringify(updateData),
                     headers: {
                         "Content-Type": "application/json",
-                        // "Content-Type": "application/x-www-form-urlencoded",
                     }
                 })
-                // .then(resp => resp.json())
+
                 .then(music => {
                     this.reset();
                     M.toast({
@@ -163,30 +157,53 @@ document.addEventListener('DOMContentLoaded', function () {
                         html: `Error: ${err.message}`,
                         classes: 'error'
                     });
+
                 });
+
 
         });
 
 
+        // remove class to open update tab and switch to the tab and musicToBeCopied contains existing data to be modified.
 
+        updateTabTrigger.parentNode.classList.remove('disabled');
+        // console.log("id", id);
+        instance.select('updatebands');
+        //  console.log(updateForm, updateForm.querySelectorAll('#id'));
+        updateForm.querySelectorAll('#id')[0].value = id;
+        const musicToBeUpdated = _music.find(music => {
+            return music._id === id;
+        });
+        //var id = id;
+        // console.log(musicToBeUpdated);
+        populateForm(musicToBeUpdated);
+    }
+
+    // Add the data into the form. This needs lots of improvement
+    function populateForm(data) {
+        var data = data;
+
+        document.forms['updateForm'].elements['artist'].value = data.artist;
+        document.forms['updateForm'].elements['formed'].value = data.formed;
+        document.forms['updateForm'].elements['genre'].value = data.genre;
+        document.forms['updateForm'].elements['firstNameUpdate'].value = data.bandMembers[0].firstName;
+        document.forms['updateForm'].elements['surnameUpdate'].value = data.bandMembers[0].surname;
+        document.forms['updateForm'].elements['ageUpdate'].value = data.bandMembers[0].age;
+        document.forms['updateForm'].elements['instrumentUpdate'].value = data.bandMembers[0].instrument;
+        document.forms['updateForm'].elements['albumsUpdate'].value = data.albums[0].title;
+        document.forms['updateForm'].elements['releaseDateUpdate'].value = data.albums[0].releaseDate;
+        document.forms['updateForm'].elements['imgURLUpdate'].value = data.albums[0].imgURL;
 
     }
 
-
+    // reload lists called at end of form submissions to view new data.
     function reloadList() {
         getMusic()
         instance.select('bands');
     }
 
-    // const deleteform = document.getElementById('deleteForm');
-    // deleteform.addEventListener('submit', function (e) {
-    //     e.preventDefault();
 
-
-    //     const artistDelete = document.getElementById('artistdelete');
-    //     const deleteArtist = artistDelete.value;
-
-    //     console.log('artist deleted', deleteArtist);
+    // delete a band. 
 
     function deleteBand(id) {
         fetch(`/music/${id}`, {
@@ -210,7 +227,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    // Add FORM
+
+    //add a band
+
     const form = document.getElementById('addForm');
     form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -247,16 +266,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const instrumentValue = instrumentInput.value;
 
 
-        console.log('artist', artistValue);
-        console.log('formed', formedValue);
-        console.log('genre', genreValue);
-        console.log('image', imgURLValue);
-        console.log('album', albumValue);
-        console.log('album', releaseValue);
-        console.log('first', firstNameValue);
-        console.log('surname', surnameValue);
-        console.log('age', ageValue);
-        console.log('inst', instrumentValue);
+        // console.log('artist', artistValue);
+        // console.log('formed', formedValue);
+        // console.log('genre', genreValue);
+        // console.log('image', imgURLValue);
+        // console.log('album', albumValue);
+        // console.log('album', releaseValue);
+        // console.log('first', firstNameValue);
+        // console.log('surname', surnameValue);
+        // console.log('age', ageValue);
+        // console.log('inst', instrumentValue);
 
 
         const data = {
@@ -267,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function () {
             albums: [{
                 title: albumValue,
                 imgURL: imgURLValue,
-                releaseDate: formedValue,
+                releaseDate: releaseValue,
 
             }],
             bandMembers: [{
@@ -288,10 +307,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 body: JSON.stringify(data),
                 headers: {
                     "Content-Type": "application/json",
-                    // "Content-Type": "application/x-www-form-urlencoded",
+
                 }
             })
-            // .then(resp => resp.json())
+
             .then(music => {
                 this.reset();
                 M.toast({
@@ -309,39 +328,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
     });
-
-    // function updateBand(id) {
-    //     console.log("clickec");
-    //     updateTabTrigger.parentNode.classList.remove('disabled');
-    //     instance.select('updatebands');
-    //     console.log(updateForm, updateForm.querySelectorAll('#id'));
-    //     updateForm.querySelectorAll('#id')[0].value = id;
-    //     const bandToBeUpdated = _music.find(music => {
-    //         return music._id === id;
-    //     });
-    //     console.log(bandToBeUpdated);
-    //     // populateForm(updateForm, bandToBeUpdated);
-    // }
-
-
-
-
-
-
-    // function populateForm(form, data) {
-    //     for (const item in data) {
-    //         const el = form.querySelectorAll(`input[artist="${item}"]`);
-    //         if (el.length) {
-    //             el[0].value = data[item];
-    //         }
-    //     }
-    // }
-
-
-
-
-
-
 
     getMusic()
 

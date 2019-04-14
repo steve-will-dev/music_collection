@@ -40,8 +40,8 @@
                     <li class="tab col s3">
                         <a href="#addbands">Add a Band</a>
                     </li>
-                    <li class="tab col s3">
-                        <a href="#updatebands">Update a Band</a>
+                    <li class="tab col s3 disabled">
+                        <a id="updatebandstab" href="#updatebands">Update a Band</a>
                     </li>
 
                 </ul>
@@ -49,97 +49,85 @@
         </div>
         <div class="row">
             <div id="bands" class="col s12">
-                <!-- <form class="col s12" id="getForm">
 
-                    <div class="input-field col s12">
-                        <input id="artist" type="text" class="validate">
-                        <label for="artist">Artist</label>
-                    </div>
-
-                    <div class="col s12">
-
-                        <button class="btn waves-effect waves-light" type="submit" value="submit" name="action">
-                            Search Band
-                            <i class="material-icons right">></i>
-                        </button>
-                    </div>
-
-                </form> -->
                 <div id="mountNode"></div>
             </div>
         </div>
 
-        <div class="row" id="addbands">
-            <form class="col s12" id="addForm">
-                <div class="row">
-                    <div>Band Details</div>
-                    <br />
-                    <div class="input-field col s12">
-                        <input id="artist" type="text" class="validate">
-                        <label for="artist">Artist</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input placeholder="date" id="formed" type="date" class="validate">
-                        <label for="formed">Formed</label>
-                    </div>
+        <div class="row">
+            <div class="col s12">
+                <div id="addbands" class="col s12">
+                    <form class="col s12" id="addForm">
+                        <div class="row">
+                            <div>Band Details</div>
+                            <br />
+                            <div class="input-field col s12">
+                                <input id="artist" type="text" class="validate">
+                                <label for="artist">Artist</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="date" id="formed" type="date" class="validate">
+                                <label for="formed">Formed</label>
+                            </div>
 
-                    <div class="input-field col s6">
-                        <input id="genre" type="text" class="validate">
-                        <label for="genre">Genre</label>
-                    </div><br />
+                            <div class="input-field col s6">
+                                <input id="genre" type="text" class="validate">
+                                <label for="genre">Genre</label>
+                            </div><br />
 
-                    <div>Band Member</div><br />
+                            <div>Band Member</div><br />
 
-                    <div class="input-field col s6">
-                        <input id="firstName" type="text" class="validate">
-                        <label for="firstName">First Name</label>
-                    </div>
+                            <div class="input-field col s6">
+                                <input id="firstName" type="text" class="validate">
+                                <label for="firstName">First Name</label>
+                            </div>
 
-                    <div class="input-field col s6">
-                        <input id="surname" type="text" class="validate">
-                        <label for="surname">Surname</label>
-                    </div>
+                            <div class="input-field col s6">
+                                <input id="surname" type="text" class="validate">
+                                <label for="surname">Surname</label>
+                            </div>
 
-                    <div class="input-field col s6">
-                        <input id="age" type="text" class="validate">
-                        <label for="age">Age</label>
-                    </div>
+                            <div class="input-field col s6">
+                                <input id="age" type="text" class="validate">
+                                <label for="age">Age</label>
+                            </div>
 
-                    <div class="input-field col s6">
-                        <input id="instrument" type="text" class="validate">
-                        <label for="instrument">Instrument</label>
-                    </div><br />
+                            <div class="input-field col s6">
+                                <input id="instrument" type="text" class="validate">
+                                <label for="instrument">Instrument</label>
+                            </div><br />
 
-                    <div>Album Details</div><br />
-                    <div class="input-field col s6">
-                        <input id="albums" type="text" class="validate">
-                        <label for="albums">Title</label>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input id="releaseDate" type="date" class="validate">
-                            <label for="releaseDate">Release Date</label>
+                            <div>Album Details</div><br />
+                            <div class="input-field col s6">
+                                <input id="albums" type="text" class="validate">
+                                <label for="albums">Title</label>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="releaseDate" type="date" class="validate">
+                                    <label for="releaseDate">Release Date</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="imgURL" type="text" class="validate">
+                                    <label for="imgURL">Link to Artwork</label>
+                                </div>
+                            </div>
+
+                            <button class="btn waves-effect waves-light" type="submit" value="submit" name="action">
+                                Add Band
+                                <i class="material-icons right">></i>
+                            </button>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="imgURL" type="text" class="validate">
-                            <label for="imgURL">Link to Artwork</label>
-                        </div>
-                    </div>
-
-                    <button class="btn waves-effect waves-light" type="submit" value="submit" name="action">
-                        Add Band
-                        <i class="material-icons right">></i>
-                    </button>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
 
         <div class="row">
-            <div id="updatebands" class="col s12">Update Bands
-
-                <div id="bands" class="col s12">
+            <div class="col s12">
+                <div id="updatebands" class="col s12">
                     <form class="col s12" id="updateForm">
                         <div class="row">
                             <div>Band Details</div>
@@ -147,57 +135,57 @@
 
                             <input id="id" type="hidden" name="id">
 
-                            <div class="input-field col s12">
-                                <input id="artistUpdate" type="text" class="validate">
-                                <label for="artistUpdate">Artist</label>
+                            <div class="input-field col s12">Artist
+                                <input name="artist" id="artistUpdate" type="text" class="validate">
+                                <label for="artistUpdate"></label>
                             </div>
-                            <div class="input-field col s6">
-                                <input placeholder="date" id="formedUpdate" type="date" class="validate">
-                                <label for="formedUpdate">Formed</label>
+                            <div class="input-field col s6">Formed
+                                <input name="formed" placeholder="date" id="formedUpdate" type="text" class="validate">
+                                <label for="formedUpdate"></label>
                             </div>
 
-                            <div class="input-field col s6">
-                                <input id="genreUpdate" type="text" class="validate">
-                                <label for="genreUpdate">Genre</label>
+                            <div class="input-field col s6">Genre
+                                <input name="genre" id="genreUpdate" type="text" class="validate">
+                                <label for="genreUpdate"></label>
                             </div><br />
 
                             <div>Band Member</div><br />
 
-                            <div class="input-field col s6">
-                                <input id="firstNameUpdate" type="text" class="validate">
-                                <label for="firstNameUpdate">First Name</label>
+                            <div class="input-field col s6">First Name
+                                <input name="firstNameUpdate" id="firstNameUpdate" type="text" class="validate">
+                                <label for="firstNameUpdate"></label>
                             </div>
 
-                            <div class="input-field col s6">
-                                <input id="surnameUpdate" type="text" class="validate">
-                                <label for="surnameUpdate">Surname</label>
+                            <div class="input-field col s6">Surname
+                                <input name="surnameUpdate" id="surnameUpdate" type="text" class="validate">
+                                <label for="surnameUpdate"></label>
                             </div>
 
-                            <div class="input-field col s6">
-                                <input id="ageUpdate" type="text" class="validate">
-                                <label for="ageUpdate">Age</label>
+                            <div class="input-field col s6">Age
+                                <input name="ageUpdate" id="ageUpdate" type="text" class="validate">
+                                <label for="ageUpdate"></label>
                             </div>
 
-                            <div class="input-field col s6">
-                                <input id="instrumentUpdate" type="text" class="validate">
-                                <label for="instrumentUpdate">Instrument</label>
+                            <div class="input-field col s6">Instrument
+                                <input name="instrumentUpdate" id="instrumentUpdate" type="text" class="validate">
+                                <label for="instrumentUpdate"></label>
                             </div><br />
 
                             <div>Album Details</div><br />
-                            <div class="input-field col s6">
-                                <input id="albumsUpdate" type="text" class="validate">
-                                <label for="albumsUpdate">Title</label>
+                            <div class="input-field col s6">Album Title
+                                <input name="albumsUpdate" id="albumsUpdate" type="text" class="validate">
+                                <label for="albumsUpdate"></label>
                             </div>
                             <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="releaseDateUpdate" type="date" class="validate">
-                                    <label for="releaseDateUpdate">Release Date</label>
+                                <div class="input-field col s6">Release Date
+                                    <input name="releaseDateUpdate" id="releaseDateUpdate" type="text" class="validate">
+                                    <label for="releaseDateUpdate"></label>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="imgURLUpdate" type="text" class="validate">
-                                    <label for="imgURLUpdate">Link to Artwork</label>
+                                <div class="input-field col s12">Link To Artwork
+                                    <input name="imgURLUpdate" id="imgURLUpdate" type="text" class="validate">
+                                    <label for="imgURLUpdate"></label>
                                 </div>
                             </div>
 
@@ -208,7 +196,7 @@
                         </div>
                     </form>
 
-                    <div id="mountNode2"></div>
+
                 </div>
 
 
@@ -226,37 +214,6 @@
 
 
     <script id="my_template" type="text/x-handlebars-template">
-        <!-- <ul id="bandList" class="collection bandList"></ul>
-                
-                    {{#each music}}
-                      <h2>{{artist}}</h2>
-                      <li> Genre: {{genre}}</li>
-                      <li> Formed: {{formed}}</li>
-                      <br />
-                      <h6>Members</h6>           
-                      
-                    {{#each bandMembers}}
-                      {{firstName}} {{surname}} Age: {{age}}<br />
-                    {{/each}}
-                    <br />
-                    <h6>Albums</h6>
-                      </div>
-                      
-                     
-                    {{#each albums}}
-                        <li class="list-group-item">Title: {{title}} <br />Released: {{releaseDate}}<br /> <img src={{imgURL}} alt="album cover" height="250" width="250">
-                        </li><br />      
-                      {{/each}} 
-
-                     {{/each}} 
-                    
-                    
-                  
-        
-        </ul> -->
-
-
-
 
         <div>
     
