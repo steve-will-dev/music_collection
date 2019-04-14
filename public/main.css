@@ -1,8 +1,58 @@
-.main-header {
-    margin: 0;
+.nav-wrapper .container {
+    /* padding: 15px 0; */
 }
 
-#navtabs {
-    margin-bottom: 0;
-    margin-top: 5px;
+header h1 {
+    margin-top: 0;
+    font-size: 4rem;
+}
+
+.tab-display {
+    border: 1px solid #000;
+    margin-top: 50px;
+}
+
+.tabs {
+    border-bottom: 1px solid #000;
+}
+
+.tabs form {
+    margin-top: 15px;
+}
+
+.musicList dl {
+    margin-top: 0;
+    overflow: hidden;
+}
+
+.musicList dt,
+.musicList dd {
+    float: left;
+    margin-bottom: 5px;
+}
+
+.musicList dt {
+    clear: left;
+    font-weight: bold;
+}
+
+.tab-display .tab-content {
+    padding: 25px 15px 15px;
+}
+
+.tab-display .controls {
+    text-align: right;
+}
+
+.collection:empty {
+    border: none;
+}
+
+.square {
+    width: 100px;
+}
+
+#albumsection {
+
+    clear: both;
 }

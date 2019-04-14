@@ -5,43 +5,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var tabs = document.querySelectorAll('.tabs')[0];
 
+    const updateTabTrigger = document.getElementById('updatebands');
+
     var instance = M.Tabs.init(tabs, {});
 
-
-    fetch('/music/', {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json",
-                // "Content-Type": "application/x-www-form-urlencoded",
-            }
-        })
-        .then(resp => resp.json())
-
-        .then(music => {
-
-            console.log('the output', music);
-            const HTML = templateFn({
-                music
-            });
+    var _music = [];
 
 
-            const mountNode = document.getElementById('mountNode');
-            mountNode.innerHTML = HTML;
-        });
+    function getMusic() {
 
 
-    const getform = document.getElementById('getForm');
-    getform.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-
-        const artistSearch = document.getElementById('artistsearch');
-        const artist = artistSearch.value;
-
-        console.log('artist', artist);
-
-
-        fetch('/music/' + artist, {
+        fetch('/music/', {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json",
@@ -56,48 +30,184 @@ document.addEventListener('DOMContentLoaded', function () {
                 const HTML = templateFn({
                     music
                 });
+                _music = music
+                console.log('_music var', _music);
 
-
-                const mountNode2 = document.getElementById('mountNode2');
-                mountNode2.innerHTML = HTML;
+                const mountNode = document.getElementById('mountNode');
+                mountNode.innerHTML = HTML;
             });
+    }
+
+
+
+
+
+    mountNode.addEventListener("click", function (e) {
+        // console.log('click', e.target);
+        if (e.target) {
+            const id = e.target.dataset.id;
+            //   console.log("id", id);
+            if (e.target.matches("button.update")) {
+                // update
+                console.log("update");
+                updateBand(id);
+
+            } else if (e.target.matches("button.delete")) {
+                // delete
+                console.log("delete");
+                deleteBand(id);
+            }
+        }
     });
 
 
-    const deleteform = document.getElementById('deleteForm');
-    deleteform.addEventListener('submit', function (e) {
-        e.preventDefault();
+
+    function updateBand(id) {
+        instance.select('updatebands');
+        //  var id = id;
+        //   console.log("id", id);
 
 
-        const artistDelete = document.getElementById('artistdelete');
-        const deleteArtist = artistDelete.value;
+        // update FORM
+        const updateForm = document.getElementById('updateForm');
+        updateForm.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-        console.log('artist deleted', deleteArtist);
+            const artistUpdate = document.getElementById('artistUpdate');
+            const updatedArtist = artistUpdate.value;
+
+            const formedUpdate = document.getElementById('formedUpdate');
+            const updatedFormed = formedUpdate.value;
+
+            const genreUpdate = document.getElementById('genreUpdate');
+            const updatedGenre = genreUpdate.value;
+
+            const imgURLUpdate = document.getElementById('imgURLUpdate');
+            const updatedImgURL = imgURLUpdate.value;
+
+            const albumUpdate = document.getElementById('albumsUpdate');
+            const updatedAlbum = albumUpdate.value;
+
+            const releaseDateUpdate = document.getElementById('releaseDateUpdate');
+            const updatedRelease = releaseDateUpdate.value;
+
+            const firstNameUpdate = document.getElementById('firstNameUpdate');
+            const updatedFirstName = firstNameUpdate.value;
+
+            const surnameUpdate = document.getElementById('surnameUpdate');
+            const updatedSurname = surnameUpdate.value;
+
+            const ageUpdate = document.getElementById('ageUpdate');
+            const updateAge = ageUpdate.value;
+
+            const instrumentUpdate = document.getElementById('instrumentUpdate');
+            const updatedInstrument = instrumentUpdate.value;
 
 
-        fetch('/music/' + deleteArtist, {
-                method: 'DELETE',
-                headers: {
-                    "Content-Type": "application/json",
-                    // "Content-Type": "application/x-www-form-urlencoded",
-                }
-            })
-            .then(resp => resp.json())
-            .then(music => {
-                M.toast({
-                    html: 'Bands Saved!',
-                    classes: 'success'
+            console.log('artist', updatedArtist);
+            console.log('formed', updatedFormed);
+            console.log('genre', updatedGenre);
+            console.log('image', updatedImgURL);
+            console.log('album', updatedAlbum);
+            console.log('album', updatedRelease);
+            console.log('first', updatedFirstName);
+            console.log('surname', updatedSurname);
+            console.log('age', updateAge);
+            console.log('inst', updatedInstrument);
+
+
+            const updateData = {
+                artist: updatedArtist,
+                formed: updatedFormed,
+                genre: updatedGenre,
+
+                albums: [{
+                    title: updatedAlbum,
+                    imgURL: updatedImgURL,
+                    releaseDate: updatedRelease,
+
+                }],
+                bandMembers: [{
+                    firstName: updatedFirstName,
+                    surname: updatedSurname,
+                    age: updateAge,
+                    instrument: updatedInstrument
+
+                }]
+
+
+            };
+
+            console.log('update data', updateData, id);
+
+            fetch(`/music/${id}`, {
+                    method: 'PUT',
+                    body: JSON.stringify(updateData),
+                    headers: {
+                        "Content-Type": "application/json",
+                        // "Content-Type": "application/x-www-form-urlencoded",
+                    }
+                })
+                // .then(resp => resp.json())
+                .then(music => {
+                    this.reset();
+                    M.toast({
+                        html: "Band Updated!",
+                        classes: "success"
+                    });
+                    reloadList();
+                })
+                .catch(err => {
+                    console.log(error);
+                    M.toast({
+                        html: `Error: ${err.message}`,
+                        classes: 'error'
+                    });
                 });
+
+        });
+
+
+
+
+    }
+
+
+    function reloadList() {
+        getMusic()
+        instance.select('bands');
+    }
+
+    // const deleteform = document.getElementById('deleteForm');
+    // deleteform.addEventListener('submit', function (e) {
+    //     e.preventDefault();
+
+
+    //     const artistDelete = document.getElementById('artistdelete');
+    //     const deleteArtist = artistDelete.value;
+
+    //     console.log('artist deleted', deleteArtist);
+
+    function deleteBand(id) {
+        fetch(`/music/${id}`, {
+                method: 'DELETE'
+            })
+            .then(resp => {
+                console.log('resp', resp);
+                M.toast({
+                    html: "Band Deleted!",
+                    classes: "success"
+                });
+                getMusic();
             })
             .catch(err => {
-                console.log(error);
+                console.log('err', err);
                 M.toast({
                     html: `Error: ${err.message}`,
-                    classes: 'error'
+                    classes: "error"
                 });
             });
-    });
-
+    }
 
 
     // Add FORM
@@ -124,7 +234,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const releaseValue = releaseDateInput.value;
 
 
-
         const firstNameInput = document.getElementById('firstName');
         const firstNameValue = firstNameInput.value;
 
@@ -136,8 +245,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const instrumentInput = document.getElementById('instrument');
         const instrumentValue = instrumentInput.value;
-
-
 
 
         console.log('artist', artistValue);
@@ -156,7 +263,6 @@ document.addEventListener('DOMContentLoaded', function () {
             artist: artistValue,
             formed: formedValue,
             genre: genreValue,
-            releaseDate: releaseValue,
 
             albums: [{
                 title: albumValue,
@@ -172,7 +278,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             }]
 
+
         };
+
+        console.log('data', data);
 
         fetch('/music', {
                 method: 'POST',
@@ -182,12 +291,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     // "Content-Type": "application/x-www-form-urlencoded",
                 }
             })
-            .then(resp => resp.json())
+            // .then(resp => resp.json())
             .then(music => {
+                this.reset();
                 M.toast({
-                    html: 'Bands Saved!',
-                    classes: 'success'
+                    html: "Band Saved!",
+                    classes: "success"
                 });
+                reloadList();
             })
             .catch(err => {
                 console.log(error);
@@ -198,5 +309,41 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
     });
+
+    // function updateBand(id) {
+    //     console.log("clickec");
+    //     updateTabTrigger.parentNode.classList.remove('disabled');
+    //     instance.select('updatebands');
+    //     console.log(updateForm, updateForm.querySelectorAll('#id'));
+    //     updateForm.querySelectorAll('#id')[0].value = id;
+    //     const bandToBeUpdated = _music.find(music => {
+    //         return music._id === id;
+    //     });
+    //     console.log(bandToBeUpdated);
+    //     // populateForm(updateForm, bandToBeUpdated);
+    // }
+
+
+
+
+
+
+    // function populateForm(form, data) {
+    //     for (const item in data) {
+    //         const el = form.querySelectorAll(`input[artist="${item}"]`);
+    //         if (el.length) {
+    //             el[0].value = data[item];
+    //         }
+    //     }
+    // }
+
+
+
+
+
+
+
+    getMusic()
+
 
 });

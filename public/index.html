@@ -34,10 +34,16 @@
         <div class="row" id="navtabs">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s3"><a class="active" href="#bands">List</a></li>
-                    <li class="tab col s3"><a href="#addbands">Add a Band</a></li>
-                    <li class="tab col s3"><a href="#updatebands">Update a Band</a></li>
-                    <li class="tab col s3"><a href="#deletebands">Delete a Band</a></li>
+                    <li class="tab col s3">
+                        <a class="active" href="#bands">List</a>
+                    </li>
+                    <li class="tab col s3">
+                        <a href="#addbands">Add a Band</a>
+                    </li>
+                    <li class="tab col s3">
+                        <a href="#updatebands">Update a Band</a>
+                    </li>
+
                 </ul>
             </div>
         </div>
@@ -134,52 +140,75 @@
             <div id="updatebands" class="col s12">Update Bands
 
                 <div id="bands" class="col s12">
-                    <form class="col s12" id="getForm">
+                    <form class="col s12" id="updateForm">
+                        <div class="row">
+                            <div>Band Details</div>
+                            <br />
 
-                        <div class="input-field col s12">
-                            <input id="artistsearch" type="text" class="validate">
-                            <label for="artist">Artist</label>
-                        </div>
+                            <input id="id" type="hidden" name="id">
 
-                        <div class="col s12">
+                            <div class="input-field col s12">
+                                <input id="artistUpdate" type="text" class="validate">
+                                <label for="artistUpdate">Artist</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="date" id="formedUpdate" type="date" class="validate">
+                                <label for="formedUpdate">Formed</label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input id="genreUpdate" type="text" class="validate">
+                                <label for="genreUpdate">Genre</label>
+                            </div><br />
+
+                            <div>Band Member</div><br />
+
+                            <div class="input-field col s6">
+                                <input id="firstNameUpdate" type="text" class="validate">
+                                <label for="firstNameUpdate">First Name</label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input id="surnameUpdate" type="text" class="validate">
+                                <label for="surnameUpdate">Surname</label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input id="ageUpdate" type="text" class="validate">
+                                <label for="ageUpdate">Age</label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input id="instrumentUpdate" type="text" class="validate">
+                                <label for="instrumentUpdate">Instrument</label>
+                            </div><br />
+
+                            <div>Album Details</div><br />
+                            <div class="input-field col s6">
+                                <input id="albumsUpdate" type="text" class="validate">
+                                <label for="albumsUpdate">Title</label>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="releaseDateUpdate" type="date" class="validate">
+                                    <label for="releaseDateUpdate">Release Date</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="imgURLUpdate" type="text" class="validate">
+                                    <label for="imgURLUpdate">Link to Artwork</label>
+                                </div>
+                            </div>
 
                             <button class="btn waves-effect waves-light" type="submit" value="submit" name="action">
-                                Search Band
+                                Update Band
                                 <i class="material-icons right">></i>
                             </button>
                         </div>
-
                     </form>
+
                     <div id="mountNode2"></div>
-                </div>
-
-
-
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div id="deletebands" class="col s12">Delete Bands
-
-                <div id="bands" class="col s12">
-                    <form class="col s12" id="deleteForm">
-
-                        <div class="input-field col s12">
-                            <input id="artistdelete" type="text" class="validate">
-                            <label for="artist">Artist</label>
-                        </div>
-
-                        <div class="col s12">
-
-                            <button class="btn waves-effect waves-light" type="submit" value="submit" name="action">
-                                Delete Band
-                                <i class="material-icons right">></i>
-                            </button>
-                        </div>
-
-                    </form>
-
                 </div>
 
 
@@ -197,11 +226,9 @@
 
 
     <script id="my_template" type="text/x-handlebars-template">
-
-        <div>
+        <!-- <ul id="bandList" class="collection bandList"></ul>
                 
                     {{#each music}}
-                      <div class="spacer">
                       <h2>{{artist}}</h2>
                       <li> Genre: {{genre}}</li>
                       <li> Formed: {{formed}}</li>
@@ -209,27 +236,89 @@
                       <h6>Members</h6>           
                       
                     {{#each bandMembers}}
-                      {{firstName}} {{surname}}     Age: {{age}}<br />
-             
+                      {{firstName}} {{surname}} Age: {{age}}<br />
                     {{/each}}
                     <br />
                     <h6>Albums</h6>
                       </div>
                       
-                      <ul id="music">
+                     
                     {{#each albums}}
                         <li class="list-group-item">Title: {{title}} <br />Released: {{releaseDate}}<br /> <img src={{imgURL}} alt="album cover" height="250" width="250">
                         </li><br />      
                       {{/each}} 
 
-                    </ul>
                      {{/each}} 
-
+                    
                     
                   
-            </div>
         
+        </ul> -->
+
+
+
+
+        <div>
     
+                    
+                    {{#each music}}
+                    <div class="row" class="col s12"> 
+                    <ul id="musicList" class="collection musicList">
+                            
+                        <li class="collection-item avatar">
+                            <dl>
+                              <h5>{{artist}}</h5>
+                              
+                              <dt>Genre: </dt>
+                              <dd>{{genre}}</dd>
+                              <dt>Formed: </dt>
+                              <dd>{{formed}}</dd>
+                            </dl>
+                            <div class="row">Members</div>
+                            {{#each bandMembers}}
+                            <div class="col s6">
+                            
+                                    <dt>Name: </dt>
+                                    <dd>{{firstName}} {{surname}}</dd>
+                            
+                                    <dt>Age: </dt>
+                                    <dd>{{age}}</dd>
+                                  
+                            </div>
+                            {{/each}}
+                      
+        
+                                
+                    <div class="row" id="albumsection">Albums</div>
+                    {{#each albums}}
+                      
+                          <img src="{{imgURL}}" alt="album cover" class="square">
+                          <dl>
+                            <dt>Title: </dt>
+                            <dd class="title">{{title}}</dd>
+                            <dt>Released: </dt>
+                            <dd>{{releaseDate}}</dd>
+                          </dl>
+                    {{/each}}
+                          <div class="controls">
+                            <button class="btn btn-info update" data-id="{{_id}}">
+                                <i class="material-icons left">></i>
+                                Edit
+                            </button>
+                            <button class="btn btn-info delete" data-id="{{_id}}">
+                                <i class="material-icons left">></i>
+                                Delete
+                            </button>
+                          </div>
+                                        
+                    
+                        </li> 
+                    </ul>
+                </div>
+                      {{/each}}
+
+            </div>
+
 
     </script>
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
