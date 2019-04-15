@@ -13,7 +13,7 @@
 
 
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="materialize.css">
 
     <title>Bands</title>
 </head>
@@ -22,7 +22,7 @@
 
     <header>
         <nav>
-            <div class="nav-wrapper">
+            <div class="nav-wrapper blue-grey darken-2">
                 <div class="container">
                     <h1 class="main-header">Your Album Collection</h1>
                 </div>
@@ -30,10 +30,10 @@
         </nav>
     </header>
 
-    <div class="container tab-display">
-        <div class="row" id="navtabs">
-            <div class="col s12">
-                <ul class="tabs">
+    <div class="container">
+        <div class="row blue-grey darken-2 maintabs" id="navtabs">
+            <div class="col s12 maintabs">
+                <ul class="tabs blue-grey darken-2">
                     <li class="tab col s3">
                         <a class="active" href="#bands">List</a>
                     </li>
@@ -56,7 +56,7 @@
 
         <div class="row">
             <div class="col s12">
-                <div id="addbands" class="col s12">
+                <div id="addbands" class="col s12 collection musicList">
                     <form class="col s12" id="addForm">
                         <div class="row">
                             <div>Band Details</div>
@@ -127,7 +127,7 @@
 
         <div class="row">
             <div class="col s12">
-                <div id="updatebands" class="col s12">
+                <div id="updatebands" class="col s12 collection musicList">
                     <form class="col s12" id="updateForm">
                         <div class="row">
                             <div>Band Details</div>
