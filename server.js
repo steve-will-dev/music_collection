@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT || 6666; // port number or fallback to 6666 if no .env
 
 const {
-    MONGODB_URL
+    MONGODB_URI
 } = process.env;
 
 // app useage setup entry dir and parser 
@@ -23,7 +23,7 @@ app.use(express.static('public'));
 
 // connect the database
 mongoose.Promise = global.Promise;
-const dbConnect = mongoose.connect(MONGODB_URL || 'mongodb://localhost/music', {
+const dbConnect = mongoose.connect(MONGODB_URI || 'mongodb://localhost/music', {
     useNewUrlParser: true
 });
 
