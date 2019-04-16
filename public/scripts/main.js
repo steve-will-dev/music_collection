@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    //add a band
+    //add a band get serialize to array working so dont need all this code working.
 
     const form = document.getElementById('addForm');
     form.addEventListener('submit', function (e) {

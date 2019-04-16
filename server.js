@@ -6,7 +6,7 @@ const parser = require('body-parser');
 
 // set app to express and set port
 const app = express();
-const port = process.env.port || 6666; // port number or fallback to 6666 if no .env
+const port = process.env.PORT || 6666; // port number or fallback to 6666 if no .env
 
 const {
     MONGODB_URL
@@ -23,7 +23,9 @@ app.use(express.static('public'));
 
 // connect the database
 mongoose.Promise = global.Promise;
-const dbConnect = mongoose.connect('mongodb://localhost/music');
+const dbConnect = mongoose.connect(MONGODB_URL || 'mongodb://localhost/music', {
+    useNewUrlParser: true
+});
 
 dbConnect.then((db) => {
     console.log('Database Connected');
