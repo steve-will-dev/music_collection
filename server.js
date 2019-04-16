@@ -115,17 +115,17 @@ app.get('/music', (req, res, next) => {
         })
 });
 
-// find all data on the artist with the id
-// app.get('/music/:id?', (req, res, next) => {
-//     const findArtist = req.params.id;
-//     music.find({
-//             _id: findArtist,
-//         })
-//         .exec((err, result) => {
-//             if (err) return res.status(500).send(err);
-//             res.status(200).json(result);
-//         })
-// });
+//find all data on the artist with the id
+app.get('/music/:id?', (req, res, next) => {
+    const findArtist = req.params.id;
+    music.find({
+            _id: findArtist,
+        })
+        .exec((err, result) => {
+            if (err) return res.status(500).send(err);
+            res.status(200).json(result);
+        })
+});
 
 // get a bands albums by artist name fix string to capital at 0 and remaining lowercase
 app.get('/album/:artist', (req, res, next) => {
