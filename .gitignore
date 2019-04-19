@@ -26,6 +26,8 @@ $RECYCLE.BIN/
 # directories
 
 node_modules/
+music-collection-2019/
+.vscode/
 
 #enviroment variables
 
